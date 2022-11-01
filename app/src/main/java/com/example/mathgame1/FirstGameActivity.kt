@@ -109,7 +109,7 @@ import kotlin.random.Random
         resultTextView.text = result.toString()
 
         var groupTwoValue1 = randomGenerator.nextInt(1, 49)
-        var groupTwoValue2 = result - groupTwoValue1
+        var groupTwoValue2 = randomGenerator.nextInt(1, 49)
 
 
         var arrayInt = arrayOf(0, 1, 2, 3)
