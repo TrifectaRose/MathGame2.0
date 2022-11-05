@@ -82,7 +82,6 @@ class SecondGameActivity : AppCompatActivity() {
             }
         }
         timer.start()
-
     }
 
         private fun generateQuestion()
