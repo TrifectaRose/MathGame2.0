@@ -15,7 +15,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/validationTextView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="clip_vertical|center_horizontal"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerProgressBar_2ndGame" />
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|center_vertical"
@@ -51,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button 3" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
