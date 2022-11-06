@@ -1,4 +1,8 @@
-# MathGame
+# MathGame 2.0
+
+STILL ON DEVELOPMENT! 
+
+(readme below taken from the first project)
 
 A math game made for my assignment --- feel free to use.
 
