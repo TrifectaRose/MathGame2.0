@@ -1,6 +1,7 @@
 package com.example.mathgame1
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,16 +17,13 @@ class ThirdGameActivity : AppCompatActivity() {
 
     //lateinit variables
     lateinit var buttons: Array<Button>
-    lateinit var resultTextView: TextView
     lateinit var validationTextView: TextView
     lateinit var timerProgressBar: ProgressBar
 
     //variables
-    var firstButtonPressed = false
-    var firstValue = 0
-    var secondValue = 0
+    var chosenAnswer = 0
     var currentScore = 0
-    var answerFromBefore = 0
+    var isGreen = false
 
     //value
     val maxTimeInMillis = 20000L
@@ -35,28 +33,19 @@ class ThirdGameActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_first_game)
+        setContentView(R.layout.activity_third_game)
 
         //buttons array
         buttons = arrayOf(
-            findViewById(R.id.button1),
-            findViewById(R.id.button2),
-            findViewById(R.id.button3),
-            findViewById(R.id.button4)
+            findViewById(R.id.btn_3rdGame_1),
+            findViewById(R.id.btn_3rdGame_2),
+            findViewById(R.id.btn_3rdGame_3),
+            findViewById(R.id.btn_3rdGame_4)
         )
 
-        for (button in buttons)
-        {
-            button.setOnClickListener()
-            {
-                    view : View ->
-                checkAnswer(view)
-            }
-        }
 
-        resultTextView = findViewById(R.id.resultTextView)
-        validationTextView = findViewById(R.id.validationTextView)
-        timerProgressBar = findViewById(R.id.timerProgressBar)
+        validationTextView = findViewById(R.id.validationTextView3)
+        timerProgressBar = findViewById(R.id.timerProgressBar3)
         timerProgressBar.max = (maxTimeInMillis/1000).toInt()
         timerProgressBar.min = (minTimeInMillis/1000).toInt()
 
@@ -73,7 +62,6 @@ class ThirdGameActivity : AppCompatActivity() {
                 for (button in buttons) {
                     button.isEnabled = false
                 }
-                resultTextView.text = ""
 
                 //move to EndScreen
                 val intent = Intent(this@ThirdGameActivity, EndScreen::class.java)
@@ -91,47 +79,60 @@ class ThirdGameActivity : AppCompatActivity() {
             button.isEnabled = true
 
         //refresh value
-        firstButtonPressed = false
-        firstValue = 0
-        secondValue = 0
+        isGreen = false
+        chosenAnswer = 0
 
         var randomGenerator = Random(System.currentTimeMillis())
 
         //random generator stuff
-        var result      = randomGenerator.nextInt(1, 6)
-        answerFromBefore = result
-
         var greenBtnValue = randomGenerator.nextInt(1, 20)
         var yellowBtnValue1 = randomGenerator.nextInt(1, 20)
         var yellowBtnValue2 = randomGenerator.nextInt(1, 20)
         var yellowBtnValue3 = randomGenerator.nextInt(1, 20)
-        resultTextView.text = result.toString()
 
         var arrayInt = arrayOf(0, 1, 2, 3)
         arrayInt.shuffle(randomGenerator)
 
-        //values
+        //green values
         buttons[arrayInt[0]].text = greenBtnValue.toString()
+        buttons[arrayInt[0]].setBackgroundColor(Color.GREEN)
+        buttons[arrayInt[0]].setOnClickListener{
+            isGreen = true
+            chosenAnswer = greenBtnValue
+            checkAnswer()
+        }
+
+        //yellow button values
         buttons[arrayInt[1]].text = yellowBtnValue1.toString()
         buttons[arrayInt[2]].text = yellowBtnValue2.toString()
         buttons[arrayInt[3]].text = yellowBtnValue3.toString()
+        buttons[arrayInt[1]].setBackgroundColor(Color.BLACK)
+        buttons[arrayInt[2]].setBackgroundColor(Color.BLACK)
+        buttons[arrayInt[3]].setBackgroundColor(Color.BLACK)
+
+        buttons[arrayInt[1]].setOnClickListener{
+            chosenAnswer = yellowBtnValue1
+            checkAnswer()
+        }
+        buttons[arrayInt[2]].setOnClickListener{
+            chosenAnswer = yellowBtnValue2
+            checkAnswer()
+        }
+        buttons[arrayInt[3]].setOnClickListener{
+            chosenAnswer = yellowBtnValue3
+            checkAnswer()
+        }
 
         for (x in arrayInt) println(x)
     }
 
-    private fun checkAnswer(view : View)
+    private fun checkAnswer()
     {
-        var buttonPressed = view as Button
-        println(buttonPressed.text)
 
-        //results here, second button value here
-        if (firstButtonPressed)
-        {
-            secondValue = buttonPressed.text.toString().toInt()
-            var resultCheck = (firstValue + secondValue) % answerFromBefore
+            var resultCheck = chosenAnswer % 2
 
             //validate answer
-            if (resultCheck == 0)
+            if ((resultCheck == 0) xor (isGreen == true))
             {
                 validationTextView.text = ("Correct!")
                 currentScore = currentScore + 1
@@ -141,14 +142,5 @@ class ThirdGameActivity : AppCompatActivity() {
                 validationTextView.text = ("Wrong...")
                 generateQuestion()
             }
-        }
-
-        //check the first button value
-        else
-        {
-            firstValue = buttonPressed.text.toString().toInt()
-            firstButtonPressed = true
-            buttonPressed.isEnabled = false
-        }
     }
 }

@@ -7,16 +7,41 @@
     tools:context=".MainMenuActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Math Game"
+            android:textColor="#000000"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Choose the game you want to play below!"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
 
         <Button
             android:id="@+id/btn_game_1"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Divisor" />
+            android:layout_height="90dp"
+            android:text="Divisor"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -25,8 +50,9 @@
         <Button
             android:id="@+id/btn_game_2"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Operation Math" />
+            android:layout_height="90dp"
+            android:text="Operation Math"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -35,8 +61,9 @@
         <Button
             android:id="@+id/btn_game_3"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Under Development..." />
+            android:layout_height="90dp"
+            android:text="Fast and Numerous"
+            android:textSize="20sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
