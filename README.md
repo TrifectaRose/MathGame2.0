@@ -1,6 +1,6 @@
 # MathGame 2.0
 
-STILL ON DEVELOPMENT! 
+# STILL ON DEVELOPMENT! Only two games are working as of now
 
 (readme below taken from the first project)
 
