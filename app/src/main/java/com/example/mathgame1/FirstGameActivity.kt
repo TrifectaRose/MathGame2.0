@@ -98,7 +98,7 @@ import kotlin.random.Random
         var randomGenerator = Random(System.currentTimeMillis())
 
         //random generator stuff
-        var result      = randomGenerator.nextInt(1, 6)
+        var result      = randomGenerator.nextInt(2, 6)
         answerFromBefore = result
 
         var groupOneValue1 = randomGenerator.nextInt(1, (50/result)-1)
