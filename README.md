@@ -9,7 +9,9 @@ This program is mostly made from my lecturer's tutoral (please check his video o
 
 # This app includes:
 Divisor: A game where you have to choose two numbers that can be divided by displayed number.
+
 Operation Math: A game where you have to choose the biggest equation (or subtraction) compared to other numbers.
+
 Fast and Numerous: A game where you have to find an even number OR a green background
 
 # Preview
